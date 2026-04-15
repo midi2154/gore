@@ -17,10 +17,10 @@ func Bin(text string) string {
 				log.Fatal(err)
 			}
 			fields[i-1] = fmt.Sprint(decimal)
-			fields = append(fields[:i], fields[i-1:]...)
+
+			fields = append(fields[:i], fields[i+1:]...)
 			i--
 		}
-
 	}
 	return strings.Join(fields, " ")
 }
