@@ -11,3 +11,10 @@ func Punct(s string) string {
 
 	return result.String()
 }
+
+var spaceBeforePunct = regexp.MustCompile(`\s+([.,!?;:])`)
+
+func FixPunct(s string) string {
+	return spaceBeforePunct.ReplaceAllString(s, "$1")
+}
+
