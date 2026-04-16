@@ -1,7 +1,10 @@
-import "regexp"
+package transformations
 
-var quoteCleaner = regexp.MustCompile(`(['"])\s*(.*?)\s*\1`)
+import (
+	"regexp"
+)
 
-func FixQuotes(s string) string {
-	return quoteCleaner.ReplaceAllString(s, `$1$2$1`)
+func Quote(text string) string {
+	s := regexp.MustCompile(`\s*([']+)\s*`)
+	return s.ReplaceAllString(text, "$1")
 }
