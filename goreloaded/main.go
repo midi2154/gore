@@ -32,9 +32,9 @@ func Process(text string) string {
 	result = transformations.Low(string(result))
 	result = transformations.Cap(string(result))
 	result = transformations.Articles(string(result))
-	result = transformations.Quote(string(result))
 	result = transformations.Nword(string(result))
 	result = transformations.Punct(string(result))
+	result = transformations.Quote(string(result))
 
 	return result
 }
