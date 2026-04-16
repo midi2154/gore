@@ -1,20 +1,11 @@
-func Punct(s string) string {
-	var result strings.Builder
+package transformations
 
-	for i := 0; i < len(s); i++ {
-		if strings.ContainsRune(".,!?;:", rune(s[i])) && i > 0 && s[i-1] == ' ' {
-			result.WriteByte(s[i])
-			continue
-		}
-		result.WriteByte(s[i])
-	}
+import (
+	"regexp"
+	"strings"
+)
 
-	return result.String()
+func Punct(text string) string {
+	s := regexp.MustCompile(`\s*([.,!?;:])\s*`)
+	return strings.TrimSpace(s.ReplaceAllString(text, "$1 "))
 }
-
-var spaceBeforePunct = regexp.MustCompile(`\s+([.,!?;:])`)
-
-func FixPunct(s string) string {
-	return spaceBeforePunct.ReplaceAllString(s, "$1")
-}
-
