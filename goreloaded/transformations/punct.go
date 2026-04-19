@@ -2,10 +2,14 @@ package transformations
 
 import (
 	"regexp"
-	"strings"
 )
 
-func Punct(text string) string {
-	s := regexp.MustCompile(`\s*([.,!?;:])\s*`)
-	return strings.TrimSpace(s.ReplaceAllString(text, "$1 "))
+func Punct(word string)string{
+	Checkpunct := regexp.MustCompile(`\s+([.,:;?!])`)
+	word = Checkpunct.ReplaceAllString(word, "$1")
+
+	checkpunct2 := regexp.MustCompile(`([.,:;?!])(\s*)(\w)`)
+	word = checkpunct2.ReplaceAllString(word, "$1 $3")
+
+	return word
 }
