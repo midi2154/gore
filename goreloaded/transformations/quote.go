@@ -5,16 +5,24 @@ import (
 )
 
 
-func Quote(s string)string{
-	re := regexp.MustCompile(`'\s+(.*?)\s+'`)
-	s = re.ReplaceAllString(s, "'$1'")
+func Quote(s string) string {
+	q1 := regexp.MustCompile(`'\s*(.*?)\s*'`)
+	s = q1.ReplaceAllString(s, " '$1' ")
 
-	re2 := regexp.MustCompile(`"\s+(.*?)\s+"`)
-	s = re2.ReplaceAllString(s,`"1$"`)
+	q2 := regexp.MustCompile(`"\s*(.*?)s*"`)
+	s = q2.ReplaceAllString(s, " \"$1\" ")
+
+	//q3 := regexp.MustCompile((`(\w+)(\s+)`))
+	//s = q3.ReplaceAllString(s, `$1 `)
+
+	text := strings.Fields(s)
+	return strings.Join(text, " ")
+
+}
 
 
-	re3 := regexp.MustCompile((`(\w+)(\s+)`))
-	s = re3.ReplaceAllString(s, `$1 `)
+
+	
 
 
 	return s
