@@ -4,12 +4,14 @@ import (
 	"regexp"
 )
 
-func Punct(word string)string{
-	Checkpunct := regexp.MustCompile(`\s+([.,:;?!])`)
-	word = Checkpunct.ReplaceAllString(word, "$1")
 
-	checkpunct2 := regexp.MustCompile(`([.,:;?!])(\s*)(\w)`)
-	word = checkpunct2.ReplaceAllString(word, "$1 $3")
+func Punct(s string) string {
+	p1 := regexp.MustCompile(`\s+([.,:;?!])`)
+	s = p1.ReplaceAllString(s, "$1")
 
-	return word
+	p2 := regexp.MustCompile(`([.,:;?!])(\s*)(\w)`)
+	s = p2.ReplaceAllString(s, "$1 $3")
+
+	return s
 }
+
