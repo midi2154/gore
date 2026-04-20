@@ -6,10 +6,10 @@ import (
 )
 
 func Quote(s string) string {
-	re := regexp.MustCompile(`'\s+(.*?)\s+'`)
-	s = re.ReplaceAllString(s, "'$1'")
+	re := regexp.MustCompile(`'\s*(.*?)\s*'`)
+	s = re.ReplaceAllString(s, " '$1' ")
 
-	re2 := regexp.MustCompile(`"\s+(.*?)\s+"`)
+	re2 := regexp.MustCompile(`"\s*(.*?)\s*"`)
 	s = re2.ReplaceAllString(s, " \"$1\" ")
 
 	//s = re2.ReplaceAllString(s, `"1$"`)
