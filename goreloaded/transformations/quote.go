@@ -2,6 +2,7 @@ package transformations
 
 import (
 	"regexp"
+	"strings"
 )
 
 func Quote(s string) string {
