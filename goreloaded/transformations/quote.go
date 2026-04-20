@@ -19,5 +19,3 @@ func Quote(s string) string {
 	text := strings.Fields(s)
 	return strings.Join(text, " ")
 }
-
-
