@@ -4,22 +4,46 @@ import (
 	"strings"
 )
 
-func Articles(text string) string {
-	word := strings.Fields(text)
+package transformations
+
+import (
+	"strings"
+)
+
+func Articles(s string) string {
+	word := strings.Fields(s)
 
 	for i := 0; i < len(word); i++ {
-		if i+1 < len(word) && len(word[i+1]) > 0 {
-			isVowel := strings.ContainsRune("aeiouhAEIOUH", rune(word[i+1][0]))
+		if i+1 < len(word) {
+
+			next := strings.Trim(word[i+1], `"'`)
+
+			// find first letter only
+			var ch byte
+			for i := 0; i < len(next); i++ {
+				if (next[i] >= 'a' && next[i] <= 'z') || (next[i] >= 'A' && next[i] <= 'Z') {
+					ch = next[i]
+					break
+				}
+			}
+
+			isVowel := strings.ContainsAny(string(ch), "aeiouAEIOU")
+
 			if word[i] == "a" && isVowel {
 				word[i] = "an"
-			} else if word[i] == "A" && isVowel {
+			}
+			if word[i] == "A" && isVowel {
 				word[i] = "An"
-			} else if word[i] == "an" && !isVowel {
+			}
+			if word[i] == "an" && !isVowel && ch != 0 {
 				word[i] = "a"
-			} else if word[i] == "An" && !isVowel {
+			}
+			if word[i] == "An" && !isVowel && ch != 0 {
 				word[i] = "A"
 			}
 		}
 	}
+
 	return strings.Join(word, " ")
 }
+
